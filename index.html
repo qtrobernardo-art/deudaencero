@@ -63,7 +63,7 @@
         </div>
 
         <!-- Contador -->
-        <h2 class="text-2xl font-black text-slate-800 mb-6 uppercase tracking-wider">El tiempo se agota. Faltan para el sorteo:</h2>
+        <h2 class="text-2xl font-black text-slate-800 mb-6 uppercase tracking-wider">El tiempo se agota. Faltan para el sorteo del mes:</h2>
         <div id="contador" class="flex justify-center gap-3 md:gap-6 text-center mb-10">
             <div class="bg-slate-800 text-white rounded-2xl p-4 md:p-6 w-24 md:w-32 shadow-inner">
                 <span id="dias" class="block text-4xl md:text-5xl font-black text-[#009EE3]">00</span>
@@ -102,15 +102,15 @@
         <div class="grid lg:grid-cols-2 gap-10">
             <!-- Pasos Inamovibles -->
             <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100">
-                <h3 class="text-2xl font-black mb-8 pb-4 border-b-2 border-slate-100"><i class="fa-solid fa-gavel text-[#009EE3] mr-2"></i> Condiciones del Sorteo</h3>
+                <h3 class="text-2xl font-black mb-8 pb-4 border-b-2 border-slate-100"><i class="fa-solid fa-gavel text-[#009EE3] mr-2"></i> Condiciones del Sorteo Mensual</h3>
                 <ul class="space-y-6">
                     <li class="flex items-start">
                         <span class="bg-blue-100 text-blue-700 font-black rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0 text-xl">1</span>
-                        <p class="text-lg"><strong>Fin del Tiempo:</strong> Cuando el reloj marque cero, se cierra automáticamente la recepción de fondos. No entra nadie más.</p>
+                        <p class="text-lg"><strong>Fin del Mes:</strong> Cuando el reloj marque cero el <strong>último día de cada mes</strong> a las 23:59hs, se cierra el pozo actual. Al instante, el contador arranca de nuevo para el mes siguiente.</p>
                     </li>
                     <li class="flex items-start">
                         <span class="bg-blue-100 text-blue-700 font-black rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0 text-xl">2</span>
-                        <p class="text-lg"><strong>Sorteo Exclusivo:</strong> El sorteo se realiza <strong>ÚNICA Y EXCLUSIVAMENTE</strong> entre las personas que figuran en la base de datos oficial de aportantes. <strong>Si no depositaste, no participás.</strong></p>
+                        <p class="text-lg"><strong>Sorteo Exclusivo:</strong> El sorteo se realiza <strong>ÚNICA Y EXCLUSIVAMENTE</strong> entre las personas que figuran en la base de datos oficial de aportantes. Si no depositaste, no participás.</p>
                     </li>
                     <li class="flex items-start">
                         <span class="bg-blue-100 text-blue-700 font-black rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0 text-xl">3</span>
@@ -247,19 +247,16 @@
         </div>
     </footer>
 
-    <!-- Script del Contador -->
+    <!-- Script del Contador RECURRENTE (Automático todos los meses) -->
     <script>
-        const fechaSorteo = new Date();
-        fechaSorteo.setDate(fechaSorteo.getDate() + 15); 
-
         function actualizarContador() {
-            const ahora = new Date().getTime();
-            const distancia = fechaSorteo.getTime() - ahora;
+            const ahora = new Date();
+            
+            // Calculamos automáticamente el último día del mes actual a las 23:59:59
+            // Al pasarle '0' como día del mes siguiente, JavaScript nos da el último día del mes actual.
+            const fechaSorteo = new Date(ahora.getFullYear(), ahora.getMonth() + 1, 0, 23, 59, 59); 
 
-            if (distancia < 0) {
-                document.getElementById("contador").innerHTML = "<div class='text-3xl md:text-5xl font-black text-red-500 bg-red-100 p-6 rounded-2xl w-full'>¡TIEMPO AGOTADO!<br><span class='text-xl text-slate-700 mt-2 block'>Cerrando base de datos para el sorteo...</span></div>";
-                return;
-            }
+            const distancia = fechaSorteo.getTime() - ahora.getTime();
 
             const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
             const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
