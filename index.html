@@ -8,116 +8,249 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         .gradiente-mp { background: linear-gradient(135deg, #009EE3 0%, #0076A8 100%); }
+        .animacion-latido { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .95; transform: scale(1.02); } }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="text-slate-800 antialiased">
 
-    <!-- Hero Section -->
-    <header class="gradiente-mp text-white py-16 text-center px-4 shadow-lg">
-        <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">Deuda En Cero</h1>
-        <img src="logo.jpg" alt="Logo Deuda en Cero" class="w-48 md:w-56 mx-auto mb-6 rounded-full shadow-2xl border-4 border-white transform hover:scale-105 transition-transform duration-300">
-        <p class="text-xl md:text-2xl font-semibold mb-6">"Ayudemos a un argentino entre todos"</p>
-        <p class="max-w-2xl mx-auto text-lg md:text-xl opacity-90 mb-8">
+    <!-- Hero Section con LOGO GIGANTE -->
+    <header class="gradiente-mp text-white pt-16 pb-24 text-center px-4 shadow-2xl rounded-b-[3rem]">
+        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight drop-shadow-lg">Deuda En Cero</h1>
+        
+        <!-- Logo bien grande y redondo -->
+        <div class="flex justify-center mb-8">
+            <img src="logo.jpg" alt="Logo Deuda en Cero" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-2xl border-8 border-white transform hover:scale-105 transition-transform duration-300">
+        </div>
+
+        <p class="text-2xl md:text-3xl font-bold mb-4 drop-shadow-md">"Ayudemos a un argentino entre todos"</p>
+        <p class="max-w-3xl mx-auto text-lg md:text-xl opacity-95 mb-8 font-medium">
             ¿Y si con el aporte de muchos le cambiamos la vida a uno? Sumate al pozo solidario. Tu aporte vuelve en forma de oportunidad.
         </p>
     </header>
 
-    <!-- Contador -->
-    <section class="max-w-4xl mx-auto -mt-10 bg-white rounded-2xl shadow-xl p-8 text-center relative z-10 mx-4 border border-slate-100">
-        <h2 class="text-2xl font-bold text-slate-700 mb-6 uppercase tracking-wider">Faltan para el sorteo:</h2>
-        <div id="contador" class="flex justify-center gap-4 text-center">
-            <div class="bg-slate-100 rounded-lg p-4 w-24">
-                <span id="dias" class="block text-4xl font-black text-blue-500">00</span>
-                <span class="text-sm font-semibold text-slate-500">DÍAS</span>
+    <!-- ESTADO DEL POZO: Recaudación y Contador -->
+    <section class="max-w-5xl mx-auto -mt-16 bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center relative z-10 mx-4 border-b-8 border-[#009EE3]">
+        
+        <!-- Dinero Juntado -->
+        <div class="mb-10 pb-10 border-b-2 border-slate-100">
+            <h2 class="text-xl font-bold text-slate-500 uppercase tracking-widest mb-2">Pozo Solidario Actual</h2>
+            <!-- ACÁ CAMBIÁS EL NÚMERO MANUALMENTE CUANDO VAYA ENTRANDO PLATA -->
+            <div class="text-6xl md:text-8xl font-black text-green-500 mb-4 tracking-tighter">$ 1.250.000</div>
+            <p class="text-slate-500 font-semibold"><i class="fa-solid fa-arrow-trend-up text-green-500"></i> Creciendo gracias a los aportes de todos</p>
+        </div>
+
+        <!-- Contador -->
+        <h2 class="text-2xl font-black text-slate-800 mb-6 uppercase tracking-wider">El tiempo se agota. Faltan para el sorteo:</h2>
+        <div id="contador" class="flex justify-center gap-3 md:gap-6 text-center mb-10">
+            <div class="bg-slate-800 text-white rounded-2xl p-4 md:p-6 w-24 md:w-32 shadow-inner">
+                <span id="dias" class="block text-4xl md:text-5xl font-black text-[#009EE3]">00</span>
+                <span class="text-xs md:text-sm font-bold tracking-widest mt-1 block">DÍAS</span>
             </div>
-            <div class="bg-slate-100 rounded-lg p-4 w-24">
-                <span id="horas" class="block text-4xl font-black text-blue-500">00</span>
-                <span class="text-sm font-semibold text-slate-500">HORAS</span>
+            <div class="bg-slate-800 text-white rounded-2xl p-4 md:p-6 w-24 md:w-32 shadow-inner">
+                <span id="horas" class="block text-4xl md:text-5xl font-black text-[#009EE3]">00</span>
+                <span class="text-xs md:text-sm font-bold tracking-widest mt-1 block">HORAS</span>
             </div>
-            <div class="bg-slate-100 rounded-lg p-4 w-24">
-                <span id="minutos" class="block text-4xl font-black text-blue-500">00</span>
-                <span class="text-sm font-semibold text-slate-500">MINS</span>
+            <div class="bg-slate-800 text-white rounded-2xl p-4 md:p-6 w-24 md:w-32 shadow-inner">
+                <span id="minutos" class="block text-4xl md:text-5xl font-black text-[#009EE3]">00</span>
+                <span class="text-xs md:text-sm font-bold tracking-widest mt-1 block">MINS</span>
             </div>
-            <div class="bg-slate-100 rounded-lg p-4 w-24">
-                <span id="segundos" class="block text-4xl font-black text-blue-500">00</span>
-                <span class="text-sm font-semibold text-slate-500">SEGS</span>
+            <div class="bg-slate-800 text-white rounded-2xl p-4 md:p-6 w-24 md:w-32 shadow-inner">
+                <span id="segundos" class="block text-4xl md:text-5xl font-black text-[#009EE3]">00</span>
+                <span class="text-xs md:text-sm font-bold tracking-widest mt-1 block">SEGS</span>
             </div>
         </div>
         
-        <!-- Botón de Pago -->
-        <div class="mt-10">
-            <a href= "https://link.mercadopago.com.ar/aportevoluntario" class="inline-block bg-[#009EE3] hover:bg-[#0086C4] text-white font-bold text-2xl py-4 px-12 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
-                <i class="fa-solid fa-hand-holding-dollar mr-2"></i> Aportar al Pozo
+        <!-- Botón de Pago Principal -->
+        <div class="mt-8 animacion-latido">
+            <a href="https://link.mercadopago.com.ar/aportevoluntario" class="inline-block bg-[#009EE3] hover:bg-[#0086C4] text-white font-black text-3xl py-6 px-16 rounded-full shadow-2xl transition-all border-4 border-white">
+                <i class="fa-solid fa-hand-holding-dollar mr-3"></i> APORTAR AL POZO
             </a>
-            <p class="mt-3 text-sm text-slate-500 font-semibold"><i class="fa-solid fa-lock"></i> Pago 100% seguro por Mercado Pago</p>
+            <p class="mt-4 text-sm text-slate-500 font-bold"><i class="fa-solid fa-shield-halved text-green-500"></i> Tu pago está 100% protegido y asegurado por Mercado Pago</p>
         </div>
     </section>
 
-    <!-- Cómo Funciona y Transparencia -->
-    <section class="max-w-5xl mx-auto py-16 px-4">
-        <h2 class="text-3xl font-extrabold text-center mb-12 text-slate-800">Reglas Claras, Deuda en Cero</h2>
+    <!-- REGLAS Y CONDICIONES BLINDADAS -->
+    <section class="max-w-6xl mx-auto py-20 px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black text-slate-800 uppercase tracking-tight">Reglas Claras y Transparentes</h2>
+            <p class="text-lg text-slate-500 mt-2 font-medium">Las condiciones son inamovibles. La transparencia es nuestra garantía.</p>
+        </div>
         
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Pasos -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                <h3 class="text-xl font-bold mb-6 border-b pb-2"><i class="fa-solid fa-list-check text-blue-500"></i> ¿Cómo funciona?</h3>
-                <ul class="space-y-4">
+        <div class="grid lg:grid-cols-2 gap-10">
+            <!-- Pasos Inamovibles -->
+            <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100">
+                <h3 class="text-2xl font-black mb-8 pb-4 border-b-2 border-slate-100"><i class="fa-solid fa-gavel text-[#009EE3] mr-2"></i> Condiciones del Sorteo</h3>
+                <ul class="space-y-6">
                     <li class="flex items-start">
-                        <span class="bg-blue-100 text-blue-600 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 shrink-0">1</span>
-                        <p><strong>El Aporte:</strong> Cada colaboración suma al pozo general.</p>
+                        <span class="bg-blue-100 text-blue-700 font-black rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0 text-xl">1</span>
+                        <p class="text-lg"><strong>Fin del Tiempo:</strong> Cuando el reloj marque cero, se cierra automáticamente la recepción de fondos. No entra nadie más.</p>
                     </li>
                     <li class="flex items-start">
-                        <span class="bg-blue-100 text-blue-600 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 shrink-0">2</span>
-                        <p><strong>El Reloj:</strong> Cuando el contador llega a cero, se cierra la etapa de aportes.</p>
+                        <span class="bg-blue-100 text-blue-700 font-black rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0 text-xl">2</span>
+                        <p class="text-lg"><strong>Sorteo Exclusivo:</strong> El sorteo se realiza <strong>ÚNICA Y EXCLUSIVAMENTE</strong> entre las personas que figuran en la base de datos oficial de aportantes. <strong>Si no depositaste, no participás.</strong></p>
                     </li>
                     <li class="flex items-start">
-                        <span class="bg-blue-100 text-blue-600 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 shrink-0">3</span>
-                        <p><strong>El Sorteo:</strong> Se realiza un sorteo público y transparente entre todos los aportantes.</p>
+                        <span class="bg-blue-100 text-blue-700 font-black rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0 text-xl">3</span>
+                        <p class="text-lg"><strong>Transparencia:</strong> El sorteo será público y documentado para garantizar que la ayuda llegue a quien le corresponde.</p>
                     </li>
                 </ul>
             </div>
 
             <!-- Porcentajes -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                <h3 class="text-xl font-bold mb-6 border-b pb-2"><i class="fa-solid fa-scale-balanced text-blue-500"></i> Distribución Transparente</h3>
-                <div class="flex items-center mb-4">
-                    <div class="w-16 text-3xl font-black text-green-500">70%</div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg">Para el Ganador</h4>
-                        <p class="text-sm text-slate-600">Se entrega directamente al ganador del sorteo para que cancele sus deudas y arranque de cero.</p>
+            <div class="bg-slate-800 p-10 rounded-3xl shadow-lg text-white">
+                <h3 class="text-2xl font-black mb-8 pb-4 border-b-2 border-slate-700"><i class="fa-solid fa-chart-pie text-[#009EE3] mr-2"></i> Distribución del Pozo</h3>
+                
+                <div class="bg-slate-700 rounded-2xl p-6 mb-6 transform hover:scale-105 transition-transform">
+                    <div class="flex items-center">
+                        <div class="w-24 text-5xl font-black text-green-400">70%</div>
+                        <div class="ml-4">
+                            <h4 class="font-black text-xl mb-1">Premio Directo al Ganador</h4>
+                            <p class="text-sm text-slate-300">Se transfiere directo a la cuenta del ganador del sorteo (aportante verificado) para que cancele deudas y arranque de cero.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-center">
-                    <div class="w-16 text-3xl font-black text-slate-400">30%</div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg">Plataforma e Impuestos</h4>
-                        <p class="text-sm text-slate-600">Se destina a cubrir comisiones de Mercado Pago, impuestos legales y el mantenimiento del proyecto.</p>
+
+                <div class="bg-slate-700 rounded-2xl p-6 transform hover:scale-105 transition-transform">
+                    <div class="flex items-center">
+                        <div class="w-24 text-5xl font-black text-[#009EE3]">30%</div>
+                        <div class="ml-4">
+                            <h4 class="font-black text-xl mb-1">Impuestos y Sostenibilidad</h4>
+                            <p class="text-sm text-slate-300">Cubre comisiones obligatorias de Mercado Pago, impuestos vigentes, mantenimiento técnico de la web y gestión del proyecto.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- BASE DE DATOS / PADRÓN DE APORTANTES -->
+    <section class="bg-white py-20 border-y border-slate-200 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-black text-slate-800"><i class="fa-solid fa-users text-[#009EE3] mr-2"></i> Base de Datos Transparente</h2>
+                <p class="text-slate-500 mt-2">Todos los que aportaron su grano de arena y participan del sorteo.</p>
+            </div>
+            
+            <div class="overflow-x-auto bg-slate-50 rounded-2xl border border-slate-200 shadow-inner max-h-96 overflow-y-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-200 text-slate-700 uppercase text-sm font-black tracking-wider sticky top-0">
+                            <th class="p-4 border-b border-slate-300">Participante</th>
+                            <th class="p-4 border-b border-slate-300">Estado</th>
+                            <th class="p-4 border-b border-slate-300 text-right">Ticket para el Sorteo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-600 font-medium">
+                        <!-- Aca vas agregando los nombres a mano -->
+                        <tr class="hover:bg-white transition-colors border-b border-slate-200">
+                            <td class="p-4"><i class="fa-solid fa-circle-user text-slate-400 mr-2"></i> Juan Perez</td>
+                            <td class="p-4"><span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-check mr-1"></i> Aporte Confirmado</span></td>
+                            <td class="p-4 text-right font-bold text-slate-800">Participa</td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors border-b border-slate-200">
+                            <td class="p-4"><i class="fa-solid fa-circle-user text-slate-400 mr-2"></i> María G.</td>
+                            <td class="p-4"><span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-check mr-1"></i> Aporte Confirmado</span></td>
+                            <td class="p-4 text-right font-bold text-slate-800">Participa</td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors border-b border-slate-200">
+                            <td class="p-4"><i class="fa-solid fa-circle-user text-slate-400 mr-2"></i> Carlos R.</td>
+                            <td class="p-4"><span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-check mr-1"></i> Aporte Confirmado</span></td>
+                            <td class="p-4 text-right font-bold text-slate-800">Participa</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center p-4 text-sm text-slate-400 italic bg-white border-t border-slate-200">
+                    La lista se actualiza periódicamente con las acreditaciones de Mercado Pago.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORIAS Y SPONSORS -->
+    <section class="max-w-6xl mx-auto py-20 px-4">
+        <div class="grid lg:grid-cols-2 gap-10">
+            
+            <!-- Historias / Muro de Deudas -->
+            <div>
+                <div class="flex items-center mb-6">
+                    <i class="fa-solid fa-book-open text-3xl text-blue-600 mr-3"></i>
+                    <h2 class="text-3xl font-black text-slate-800">Muro de Historias</h2>
+                </div>
+                <p class="text-slate-600 mb-8 font-medium">¿Por qué estás acá? Detrás de cada deuda hay una vida. Estas son las historias de quienes necesitan ganar este pozo solidario.</p>
+                
+                <div class="space-y-4">
+                    <!-- Historia 1 -->
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 shadow-sm relative">
+                        <i class="fa-solid fa-quote-left text-blue-200 text-4xl absolute top-4 right-4"></i>
+                        <h4 class="font-bold text-slate-800 mb-2">"Tarjetas explotadas por comprar medicamentos"</h4>
+                        <p class="text-slate-600 text-sm italic">"Tuve que usar las tarjetas de crédito al límite para pagar un tratamiento médico familiar. Los intereses me están comiendo el sueldo. Si gano, liquido la tarjeta y vuelvo a dormir tranquilo."</p>
+                        <p class="text-xs text-blue-500 font-bold mt-4 uppercase">- Participante Anónimo</p>
+                    </div>
+                    <!-- Historia 2 -->
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 shadow-sm relative">
+                        <i class="fa-solid fa-quote-left text-blue-200 text-4xl absolute top-4 right-4"></i>
+                        <h4 class="font-bold text-slate-800 mb-2">"Me quedé sin laburo y me atrasé con el alquiler"</h4>
+                        <p class="text-slate-600 text-sm italic">"Hace 4 meses perdí mi trabajo. Pude conseguir changas pero acumulé deuda de alquiler y luz. Ganar el 70% de este pozo me permitiría poner las cuentas al día para arrancar de nuevo."</p>
+                        <p class="text-xs text-blue-500 font-bold mt-4 uppercase">- Participante Anónimo</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <a href="#" class="inline-block bg-white text-blue-600 border-2 border-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition-colors">Enviar mi historia</a>
+                </div>
+            </div>
+
+            <!-- Espacio para Sponsors -->
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-10 rounded-3xl border border-amber-200 shadow-lg">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-sm">
+                        <i class="fa-solid fa-bullhorn text-4xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-3xl font-black text-slate-800 mb-3">Anunciá tu Marca Aquí</h3>
+                    <p class="text-slate-600 font-medium px-4">Miles de argentinos ingresan a nuestra plataforma todos los días. Convertite en Sponsor Oficial, mostrá tu negocio y ayudá a sostener el proyecto.</p>
+                </div>
+                
+                <!-- Banners falsos para que vea como queda -->
+                <div class="space-y-4 mb-8 opacity-70">
+                    <div class="bg-white border-2 border-dashed border-amber-300 rounded-xl p-4 text-center text-amber-600 font-bold text-sm">Espacio Publicitario Disponible - 600x150</div>
+                    <div class="bg-white border-2 border-dashed border-amber-300 rounded-xl p-4 text-center text-amber-600 font-bold text-sm">Espacio Publicitario Disponible - 600x150</div>
+                </div>
+
+                <div class="text-center">
+                    <a href="#" class="inline-block bg-amber-500 text-white font-black py-4 px-10 rounded-full shadow-lg hover:bg-amber-600 transition-all hover:scale-105 transform text-lg">Quiero ser Sponsor</a>
+                    <p class="text-xs text-slate-500 mt-4 uppercase tracking-wider font-bold">Contactate para tarifas y ubicaciones</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-slate-800 text-slate-400 py-8 text-center text-sm">
-        <p>&copy; 2026 Deuda En Cero. Todos los derechos reservados.</p>
-        <p class="mt-2">Esta es una iniciativa privada de crowdfunding colaborativo.</p>
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <img src="logo.jpg" alt="Logo" class="w-16 h-16 mx-auto rounded-full mb-4 opacity-50 grayscale">
+            <p class="font-bold text-white tracking-widest mb-2 uppercase">Deuda En Cero</p>
+            <p class="text-sm mb-6">Proyecto de crowdfunding solidario privado. Participar implica aceptar los términos y condiciones de distribución (70/30).</p>
+            <div class="border-t border-slate-800 pt-6 text-xs font-medium">
+                &copy; 2026 Deuda En Cero Argentina. Todos los derechos reservados.
+            </div>
+        </div>
     </footer>
 
     <!-- Script del Contador -->
     <script>
-        // Fecha del sorteo (Ejemplo: 14 días a partir de hoy)
+        // Setear la fecha del sorteo (ejemplo 15 dias)
         const fechaSorteo = new Date();
-        fechaSorteo.setDate(fechaSorteo.getDate() + 14); 
+        fechaSorteo.setDate(fechaSorteo.getDate() + 15); 
 
         function actualizarContador() {
             const ahora = new Date().getTime();
             const distancia = fechaSorteo.getTime() - ahora;
 
             if (distancia < 0) {
-                document.getElementById("contador").innerHTML = "<div class='text-2xl font-bold text-red-500'>¡TIEMPO AGOTADO! PREPARANDO SORTEO...</div>";
+                document.getElementById("contador").innerHTML = "<div class='text-3xl md:text-5xl font-black text-red-500 bg-red-100 p-6 rounded-2xl w-full'>¡TIEMPO AGOTADO!<br><span class='text-xl text-slate-700 mt-2 block'>Cerrando base de datos para el sorteo...</span></div>";
                 return;
             }
 
